@@ -13,14 +13,37 @@ const createBlog = async function (req, res) {
   
         //check Authorization
         
+
+		// Mandatory field
+		if(!title){
+			res.status(400).send({ status: false, msg: "title is not present" });
+          	return;
+		}
+
+		if(!body){
+			res.status(400).send({ status: false, msg: "body is not present" });
+          	return;
+		}
+
+		if(!authorId){
+			res.status(400).send({ status: false, msg: "authorId is not present" });
+          	return;
+		}
+
+		if(!category){
+			res.status(400).send({ status: false, msg: "category is not present" });
+          	return;
+		}
         //Validation Starts
         //1.validation for title
+		
         if (!validation.isValidString(title)) {
           res.status(400).send({ status: false, msg: "title must contain letters" });
           return;
         }
     
         //2.validation for body
+		
         if (!validation.isValidString(body)) {
           res.status(400).send({ status: false, msg: "body must contain letters" });
           return;
